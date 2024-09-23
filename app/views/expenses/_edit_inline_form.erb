@@ -1,0 +1,15 @@
+<tr data-controller="inline-edit">
+  <td colspan="<%= expense.table_row_cells.size %>">
+    <%= form_with model: expense, local: true do |f| %>
+      <div class="grid grid-cols-<%= expense.table_row_cells.size %> gap-2">
+        <% expense.form_fields(f).each do |form_field| %>
+          <div><%= form_field %></div>
+        <% end %>
+        <div class="flex space-x-2">
+          <%= f.submit "Save", class: "btn btn-success btn-sm" %>
+          <button data-action="click->inline-edit#cancel" class: "btn btn-error btn-sm">Cancel</button>
+        </div>
+      </div>
+    <% end %>
+  </td>
+</tr>
