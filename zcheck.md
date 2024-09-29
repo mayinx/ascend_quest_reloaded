@@ -97,4 +97,88 @@ module.exports = {
 
 you shoudl see a fnacy daisy ui button 
 
+
+Troubleshoot: Why isn't Rails using my updated css files?
+Watch out - if you precompile your files locally, those will be served over the dynamically created ones you expect. The solution:
+
+`rails assets:clobber` 
+
+Then bin/dev again and yyou shoudl be good ...
+
+5. Optional: Install additional postcss node packages to oOrganize, prefix or nest your styles
+
+## organize your CSS into multiple files and combine them at build time by processing @import statements in advance, instead of in the browser.
+
+From the taiwlind docs:
+
+The canonical plugin for handling this with PostCSS is postcss-import.
+
+To use it, install the plugin via npm:
+
+npm install -D postcss-import
+Then add it as the very first plugin in your PostCSS configuration:
+
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-import': {},
+    tailwindcss: {},
+    autoprefixer: {},
+  }
+}
+
+### @import statements must come first
+
+- @import statements must come first (before sytle declarations in the same file
+- so its better to separaate both : Use separate files for imports and actual CSS
+- this is even true for tailwind directives like - well - @tailwind - 
+
+use this:
+
+@import "tailwindcss/base";
+@import "./custom-base-styles.css";
+
+@import "tailwindcss/components";
+@import "./custom-components.css";
+
+@import "tailwindcss/utilities";
+@import "./custom-utilities.css";
+
+instead of this:
+
+@tailwind base;
+@import "./custom-base-styles.css";
+
+@tailwind components;
+@import "./custom-components.css";
+
+@tailwind utilities;
+@import "./custom-utilities.css";
+
+
+# nesting
+
+...
+
+npm install -D postcss-nesting
+
+
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-import': {},
+    'tailwindcss/nesting': 'postcss-nesting',
+    tailwindcss: {},
+    autoprefixer: {},
+  }
+}
+
+see https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports
+
+# autoprefixer
+
+...
+
+see https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports
+
 ------------------

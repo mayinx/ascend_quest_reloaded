@@ -4,14 +4,17 @@
 
 <h1>Expenses</h1>
 
-  <p data-controller="hello">This text will change!</p>
+<button class="btn-customyo" style="color: green;">Click Me</button>
 
-<div class="overflow-x-auto w-full">
-  <table class="table table-xs w-full border">
+<div class="expenses">
+
+  <%= render partial: "expenses_toolbar" %>
+
+  <table class="expenses__table">
       <%= @expenses.first.decorate.header_row %>
-    <tbody>
+    <tbody class="expenses__table-body">
       <% @expenses.each do |expense| %>
-        <%= render partial: "expense_row", locals: {  expense: expense.decorate  } %>
+        <%= render partial: "expense_row", locals: { expense: expense.decorate } %>
       <% end %>
     </tbody>
   </table>

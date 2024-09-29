@@ -58,4 +58,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# Bundle and process CSS in Rails with Tailwind, PostCSS, and Sass via Node.js
 gem "cssbundling-rails", "~> 1.4"

@@ -1,0 +1,69 @@
+
+
+/* Search and Filter Toolbar */
+/* .btn-customyo {
+  background-color: blue;
+  color: white;
+  padding: 1rem;
+} */
+
+
+/* .btn-custom {
+  @apply bg-blue-500 text-white py-2 px-4 rounded;
+} */
+
+@layer components {
+
+.collection-toolbar {
+    @apply flex flex-col justify-between items-center bg-white p-4 shadow-lg rounded-md mb-4;
+    @apply bg-white; 
+  }
+  
+.collection-toolbar__search {
+@apply flex-grow;
+}
+
+.collection-toolbar__search-input {
+@apply input input-bordered w-full;
+}
+
+.collection-toolbar__sort {
+@apply ml-4;
+}
+
+.collection-toolbar__sort-label {
+@apply mr-2;
+}
+
+.collection-toolbar__sort-select {
+@apply select select-bordered;
+}
+
+.collection-toolbar__column-options {
+@apply ml-4;
+}
+
+.collection-toolbar__column-options-label {
+@apply mr-2;
+}
+
+.collection-toolbar__column-options-select {
+@apply select select-bordered;
+}
+
+.collection-toolbar__view-options {
+@apply ml-4;
+}
+
+.collection-toolbar__view-options-label {
+@apply mr-2;
+}
+
+.collection-toolbar__view-options-buttons {
+/* @apply btn-group; */
+}
+
+.collection-toolbar__view-options-btn {
+@apply btn btn-outline btn-sm;
+}
+}

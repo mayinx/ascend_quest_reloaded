@@ -1,0 +1,65 @@
+@layer components {
+
+
+.expenses__table {
+    @apply table table-xs w-full border;
+  }
+  
+  .expenses__table-header-cell {
+    @apply p-2 text-left;
+  }
+    
+  .expenses__table-header-cell--hidden {
+    @apply hidden;
+  }
+
+ 
+
+  .expenses__table-row {
+    @apply hover:bg-gray-100; 
+  }
+  
+  .expenses__table-cell {
+    @apply p-2;
+  }
+  
+  .expenses__table-cell--hidden {
+    @apply hidden;
+  }
+ 
+
+  .expenses--card .expenses__items {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+  }
+  
+  .expenses--card .expenses__item {
+    @apply bg-white shadow-md rounded p-4;
+  }
+  
+  .expenses__actions {
+    @apply text-right;
+  }
+  
+  .expenses__button {
+    @apply btn btn-sm;
+  }
+  
+  .expenses__button--show {
+    @apply btn-info;
+  }
+  
+  .expenses__button--edit {
+    @apply btn-warning;
+  }
+  
+  .expenses__button--delete {
+    @apply btn-error;
+  }
+  
+  /* .btn-customyo {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+  } */
+
+}

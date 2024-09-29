@@ -6,28 +6,32 @@ class ExpenseDecorator < Draper::Decorator
 
   # FYI: Edit available columns tro be displayed here - along with their order ...  
   def self.table_headers(options={})
-    header_class = options[:class] || "p-2 text-left"
+    header_class = options[:class] || "expenses__table-header-cell"
 
     [
-      { key: :description, label: "Description", class: header_class },
-      { key: :amount, label: "Amount", class: header_class },
-      { key: :frequency, label: "Frequency", class: header_class },
-      { key: :formatted_interval, label: "Interval", class: header_class }, # Updated key 
-      { key: :start_date, label: "Start Date", class: header_class },
-      { key: :end_date, label: "End Date", class: header_class },
-      { key: :category, label: "Category", class: header_class },
-      { key: :target_amount, label: "Target Amount", class: header_class },
-      { key: :comment, label: "Comment", class: header_class },
-      { key: :actions, label: "Actions", class: header_class }
+      { key: :description, label: "Description", visible: true, class: header_class },
+      { key: :amount, label: "Amount", visible: true, class: header_class },
+      { key: :frequency, label: "Frequency", visible: true, class: header_class },
+      { key: :formatted_interval, label: "Interval", visible: false, class: header_class },   
+      { key: :start_date, label: "Start Date", visible: false, class: header_class },
+      { key: :end_date, label: "End Date", visible: false, class: header_class },
+      { key: :category, label: "Category", visible: true, class: header_class },
+      { key: :target_amount, label: "Target Amount", visible: true, class: header_class },
+      { key: :comment, label: "Comment", visible: false, class: header_class },
+      { key: :actions, label: "Actions", visible: true, class: header_class }
     ]
   end
 
   def header_row(options = {})
-    thead_class = options.delete(:thead_class) || ""
-    row_class = options.delete(:row_class) || ""
+    thead_class = options.delete(:thead_class) || "expenses__table-header"
+    row_class = options.delete(:row_class) || "expenses__table-header-row"
 
     header_cells = self.class.table_headers(options).map do |header|
-      content_tag(:th, header[:label], class: header[:class])
+      header_class = header[:class]  
+      puts "asssdasdsadsdasd"
+      puts header[:visible]
+      header_class += " #{header[:class]}--hidden" unless header[:visible]
+      content_tag(:th, header[:label], class: header_class)
     end
 
     content_tag(:thead, class: thead_class) do
