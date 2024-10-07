@@ -2,22 +2,22 @@
 
 <% content_for :title, "Expenses" %>
 
-<h1>Expenses</h1>
+<h1>Your Expenses</h1>
 
-<button class="btn-customyo" style="color: green;">Click Me</button>
-
-<div class="expenses">
-
+<div class="expenses" data-controller="expenses-toolbar">
   <%= render partial: "expenses_toolbar" %>
 
-  <table class="expenses__table">
-      <%= @expenses.first.decorate.header_row %>
-    <tbody class="expenses__table-body">
+  <table class="expenses__table" data-expenses-toolbar-target="table">
+    <%= @expenses.first.decorate.header_row %>
+    <tbody class="expenses__table-body" data-expenses-toolbar-target="tableBody">
       <% @expenses.each do |expense| %>
         <%= render partial: "expense_row", locals: { expense: expense.decorate } %>
       <% end %>
     </tbody>
   </table>
+
+    <!-- Optionally, a cards view -->
+  <div class="expenses__cards hidden" data-expenses-toolbar-target="cards"></div>
 </div>
 
 <%= link_to "New expense", new_expense_path %>

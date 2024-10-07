@@ -9,11 +9,10 @@
     @apply p-2 text-left;
   }
     
-  .expenses__table-header-cell--hidden {
+  /* Hides both table header cells and table column cells */
+  [data-hidden] {
     @apply hidden;
   }
-
- 
 
   .expenses__table-row {
     @apply hover:bg-gray-100; 
@@ -21,12 +20,7 @@
   
   .expenses__table-cell {
     @apply p-2;
-  }
-  
-  .expenses__table-cell--hidden {
-    @apply hidden;
-  }
- 
+  } 
 
   .expenses--card .expenses__items {
     @apply grid grid-cols-1 md:grid-cols-3 gap-4;

@@ -1,7 +1,5 @@
 <tr class="expenses__table-row" data-controller="inline-edit" data-expense-id="<%= expense.id %>">
-  <% expense.table_row_cells.each do |table_row_cell| %>
-    <td class="expenses__table-cell expense"><%= table_row_cell %></td>
-  <% end %>
+  <%= expense.table_row_cells.join.html_safe %> 
   <td class="expenses__table-cell expenses__table-cell--actions">
     <div class="flex space-x-2">
       <%= link_to 'Show', expense_path(expense), class: "btn btn-info btn-sm" %>

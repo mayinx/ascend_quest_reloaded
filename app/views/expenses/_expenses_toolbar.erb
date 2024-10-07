@@ -2,37 +2,43 @@
 <div class="expenses__toolbar collection-toolbar">
     <!-- Search Input (BEM: toolbar__search) -->
     <div class="collection-toolbar__search">
-        <input class="collection-toolbar__search-input" type="text" placeholder="Search..." id="table-search">
+        <input class="collection-toolbar__search-input" type="text" placeholder="Search..." id="table-search" data-expenses-toolbar-target="searchInput">
     </div>
 
     <!-- Sorting Options (BEM: toolbar__sort) -->
     <div class="collection-toolbar__sort">
         <label class="collection-toolbar__sort-label" for="sort-options" >Sort by:</label>
-        <select class="collection-toolbar__sort-select" id="sort-options">
-        <option value="title">Title</option>
-        <option value="amount">Amount</option>
-        <option value="date">Date</option>
-        <option value="actions">Actions</option>
+        <select class="collection-toolbar__sort-select" id="sort-options" data-expenses-toolbar-target="sortSelect">
+            <option value="title">Title</option>
+            <option value="amount">Amount</option>
+            <option value="date">Date</option>
+            <option value="actions">Actions</option>
         </select>
     </div>
 
-    <!-- Visible Columns Dropdown (BEM: toolbar__columns) -->
+    <!-- Visible Columns Dropdown --> 
     <div class="collection-toolbar__column-options">
-        <label class="toolbar__columns-label" for="column-options">Columns:</label>
-        <select class="toolbar__columns-select" id="column-options" multiple data-action="change->table-column#updateColumns">
-        <option value="title">Title</option>
-        <option value="amount">Amount</option>
-        <option value="date">Date</option>
-        <option value="actions">Actions</option>
-        </select>
+    <label class="toolbar__columns-label" for="column-options">Columns:</label>
+    <div class="toolbar__columns-dropdown" data-expenses-toolbar-target="columnSelect">
+        <% ExpenseDecorator.table_headers.each do |column| %>
+        <label>
+            <input type="checkbox"
+                data-column-key="<%= column[:key] %>"
+                class="toolbar__column-checkbox"
+                <%= column[:visible] ? 'checked' : '' %>
+                <%= column[:hideable] == false ? 'disabled' : '' %>> 
+            <%= column[:label] %>
+        </label>
+        <% end %>
+    </div>
     </div>
 
     <!-- View Options (BEM: toolbar__view) -->
     <div class="collection-toolbar__view-options">
         <label class="collection-toolbar__view-options-label" for="view-options">View:</label>
         <div class="collection-toolbar__view-options-buttons">
-        <button class="collection-toolbar__view-options-btn" id="table-view" data-action="click->table-column#showTableView">Table</button>
-        <button class="collection-toolbar__view-options-btn" id="cards-view" data-action="click->table-column#showCardsView">Cards</button>
+        <button class="collection-toolbar__view-options-btn" id="table-view" data-action="click->expenses-toolbar#showTableView">Table</button>
+        <button class="collection-toolbar__view-options-btn" id="cards-view" data-action="click->expenses-toolbar#showCardsView">Cards</button>
         </div>
     </div>
 </div>
